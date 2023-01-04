@@ -25,6 +25,9 @@ init(State) ->
 
 -spec do(rebar_state:t()) -> {ok, rebar_state:t()} | {error, string()}.
 do(State) ->
+    {ok, _} = application:ensure_all_started(sasl),
+    {ok, _} = application:ensure_all_started(gendb),
+    io:format("SUCCESS\n"),
     {ok, State}.
 
 -spec format_error(any()) ->  iolist().
